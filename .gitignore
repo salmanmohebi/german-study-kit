@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.pyc
+anki/audio/
+.DS_Store
+.claude/settings.local.json
