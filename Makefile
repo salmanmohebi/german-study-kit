@@ -1,4 +1,4 @@
-.PHONY: install a1 a2 b1 b2 verbs themen all clean
+.PHONY: install a1 a2 b1 b2 verbs themen a1-review a2-review review all clean
 
 PY := .venv/bin/python
 
@@ -25,7 +25,15 @@ verbs:
 themen:
 	$(PY) anki/build_themen.py
 
-all: a1 a2 b1 b2 verbs themen
+a1-review:
+	$(PY) anki/build_review.py --level A1
+
+a2-review:
+	$(PY) anki/build_review.py --level A2
+
+review: a1-review a2-review
+
+all: a1 a2 b1 b2 verbs themen review
 
 clean:
 	rm -rf anki/out

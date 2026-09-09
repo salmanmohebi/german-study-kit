@@ -6,7 +6,7 @@ Built for self-study, but anyone can use it. If you just want to study, jump to 
 
 ## What's inside
 
-Six Anki decks, ~4 700 cards total, all with neural TTS audio (`de-DE-KatjaNeural` via Microsoft Edge).
+Eight Anki decks, ~5 200 cards total, all with neural TTS audio (`de-DE-KatjaNeural` via Microsoft Edge).
 
 | Deck | Topics | Cards | Description |
 |---|---|---|---|
@@ -16,6 +16,8 @@ Six Anki decks, ~4 700 cards total, all with neural TTS audio (`de-DE-KatjaNeura
 | `B2.apkg` | 18 grammar | ~1 080 | Konjunktiv I, Partizipien, Doppelinfinitiv, Funktionsverbgefüge, Nebensätze (vertieft) |
 | `verbs.apkg` | 80 verbs | 80 | Top irregular verbs with all three principal parts + helper |
 | `themen.apkg` | 12 packs | ~430 | Survival German + 11 daily-life situations (restaurant, hotel, doctor, …) |
+| `A1-review.apkg` | 16 grammar | 256 | Cumulative A1 refresher — one gap-fill card per sentence, each with its own grammar tip |
+| `A2-review.apkg` | 18 grammar | 252 | Cumulative A2 refresher — same format, all A2 grammar in one interleaved deck |
 
 Plus markdown reference docs (no Anki): connectors cheat sheet, Goethe exam prep at every level, curated learning resources.
 
@@ -43,6 +45,15 @@ The **verbs deck** has one card per verb: infinitive on front, three principal p
 
 The **themen deck** has two cards per sentence: EN→DE and DE→EN, no cloze.
 
+The **review decks** (`A1-review`, `A2-review`) are built for revision rather than first contact, so they work differently:
+
+| | Review card |
+|---|---|
+| **Front** | topic label + German sentence with one grammar-critical word blanked + English translation |
+| **Back** | full sentence + audio + a grammar tip written for *that specific sentence* |
+
+One card per sentence — no 3× multiplication — and all 508 sentences are unique, including against the main A1/A2 decks. Everything lands in a single deck per level (`German::A1 Review`), so topics interleave instead of being drilled in blocks. Source lives in [`review/`](review/); each line is `German | English | grammar tip`.
+
 ## What makes this different from other German Anki decks
 
 - **Sentence-based, not vocabulary-based** — you learn grammar through 20 example sentences per topic, not by drilling rules in isolation.
@@ -60,7 +71,8 @@ git clone https://github.com/salmanmohebi/german-study-kit.git
 cd german-study-kit
 make install        # one-time: .venv + dependencies
 make a1             # build one level
-make all            # build everything (A1 + A2 + B1 + B2 + verbs + themen)
+make review        # build the A1 + A2 review decks
+make all            # build everything (A1 + A2 + B1 + B2 + verbs + themen + review)
 ```
 
 Audio is cached in `anki/audio/` (gitignored). Only changed sentences hit the TTS API on rebuild — the rest is instant.
