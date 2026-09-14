@@ -6,7 +6,7 @@ Built for self-study, but anyone can use it. If you just want to study, jump to 
 
 ## What's inside
 
-Eight Anki decks, ~5 200 cards total, all with neural TTS audio (`de-DE-KatjaNeural` via Microsoft Edge).
+Nine Anki decks, ~5 500 cards total, all with neural TTS audio (`de-DE-KatjaNeural` via Microsoft Edge).
 
 | Deck | Topics | Cards | Description |
 |---|---|---|---|
@@ -18,6 +18,7 @@ Eight Anki decks, ~5 200 cards total, all with neural TTS audio (`de-DE-KatjaNeu
 | `themen.apkg` | 12 packs | ~430 | Survival German + 11 daily-life situations (restaurant, hotel, doctor, …) |
 | `A1-review.apkg` | 16 grammar | 256 | Cumulative A1 refresher — one gap-fill card per sentence, each with its own grammar tip |
 | `A2-review.apkg` | 18 grammar | 252 | Cumulative A2 refresher — same format, all A2 grammar in one interleaved deck |
+| `German5-100Verben.apkg` | 99 verbs | 327 | Course deck for *German 5 (A2.2–B1.1)* — the Verbentest list with Präsens/Präteritum/Perfekt |
 
 Plus markdown reference docs (no Anki): connectors cheat sheet, Goethe exam prep at every level, curated learning resources.
 
@@ -54,6 +55,19 @@ The **review decks** (`A1-review`, `A2-review`) are built for revision rather th
 
 One card per sentence — no 3× multiplication — and all 508 sentences are unique, including against the main A1/A2 decks. Everything lands in a single deck per level (`German::A1 Review`), so topics interleave instead of being drilled in blocks. Source lives in [`review/`](review/); each line is `German | English | grammar tip`.
 
+### German 5 course deck
+
+`German5-100Verben.apkg` covers the *Verbentest* list from the course Materialsammlung (S. 12–14). The handout leaves most cells blank; [`german5/01-100-verben.md`](german5/01-100-verben.md) has them all filled in, in Swiss orthography (`ss`, not `ß`) like the course itself. Four card types per verb:
+
+| Card | Front | Back |
+|---|---|---|
+| **DE → EN** | infinitive + audio | English + full Stammformen |
+| **EN → DE** | English | infinitive + audio + Stammformen |
+| **Stammformen** | infinitive | Präsens / Präteritum / Perfekt + audio + a Perfekt example sentence |
+| **Präsens-Drill** | infinitive | the `er/sie/es` form — generated only for the 30 stem-changing verbs |
+
+That's 327 cards from 99 verbs. Tags let you filter: `unregelmaessig`, `regelmaessig`, `gemischt`, `modal`, `trennbar`, `stammwechsel`, `sein-perfekt`.
+
 ## What makes this different from other German Anki decks
 
 - **Sentence-based, not vocabulary-based** — you learn grammar through 20 example sentences per topic, not by drilling rules in isolation.
@@ -72,7 +86,8 @@ cd german-study-kit
 make install        # one-time: .venv + dependencies
 make a1             # build one level
 make review        # build the A1 + A2 review decks
-make all            # build everything (A1 + A2 + B1 + B2 + verbs + themen + review)
+make german5        # build the German 5 course deck
+make all            # build everything (A1 + A2 + B1 + B2 + verbs + themen + review + german5)
 ```
 
 Audio is cached in `anki/audio/` (gitignored). Only changed sentences hit the TTS API on rebuild — the rest is instant.
