@@ -6,7 +6,7 @@ Built for self-study, but anyone can use it. If you just want to study, jump to 
 
 ## What's inside
 
-Nine Anki decks, ~5 500 cards total, all with neural TTS audio (`de-DE-KatjaNeural` via Microsoft Edge).
+Ten Anki deck files, ~6 200 cards total, all with neural TTS audio (`de-DE-KatjaNeural` via Microsoft Edge).
 
 | Deck | Topics | Cards | Description |
 |---|---|---|---|
@@ -19,6 +19,7 @@ Nine Anki decks, ~5 500 cards total, all with neural TTS audio (`de-DE-KatjaNeur
 | `A1-review.apkg` | 16 grammar | 256 | Cumulative A1 refresher — one gap-fill card per sentence, each with its own grammar tip |
 | `A2-review.apkg` | 18 grammar | 252 | Cumulative A2 refresher — same format, all A2 grammar in one interleaved deck |
 | `German5-100Verben.apkg` | 99 verbs | 327 | Course deck for *German 5 (A2.2–B1.1)* — the Verbentest list with Präsens/Präteritum/Perfekt |
+| `German5-Wortschatz.apkg` | 15 lists | 644 | Every printed word list in the German 5 Materialsammlung, one subdeck per lesson |
 
 Plus markdown reference docs (no Anki): connectors cheat sheet, Goethe exam prep at every level, curated learning resources.
 
@@ -68,6 +69,28 @@ One card per sentence — no 3× multiplication — and all 508 sentences are un
 
 That's 327 cards from 99 verbs. Tags let you filter: `unregelmaessig`, `regelmaessig`, `gemischt`, `modal`, `trennbar`, `stammwechsel`, `sein-perfekt`.
 
+`German5-Wortschatz.apkg` covers every printed word list in the Materialsammlung — the 12 lists the handout links to a Quizlet set, plus Alltagsphrasen and Wohnen, which are printed but have no set. Source is one file per list in [`german5/ws/`](german5/ws/), each naming its pages and Quizlet link. It imports as one subdeck per list, numbered by lesson:
+
+```
+German5
+├── 100 Verben                            327
+├── L02 Arbeit und Uni                    100
+├── L02 Reflexive Verben                   28
+├── L03 Gefühle und Charakter              90
+├── L04 Adjektivdeklination Nom/Akk/Dat    50
+├── L04 Gesprächsstrategien                24
+├── L07 Alltagsphrasen                    115
+├── L07 Konnektoren                        68
+├── L07 Konnektoren Beispielsätze          34
+├── L08 Präpositionen mit festem Kasus     12
+├── L08 Redemittel Diskussion              13
+├── L09 Wohnen                             42
+├── L09 Lokale Präpositionen               31
+└── L10 Verben mit Präpositionen           37
+```
+
+Three card shapes, chosen per list: **vocab** gives DE→EN and EN→DE; **phrase** gives EN→DE only, since producing a phrase is the hard part; **cloze** blanks the one thing being drilled — the adjective ending, the connector, the preposition and its case. Every card carries audio and cites its handout page.
+
 ## What makes this different from other German Anki decks
 
 - **Sentence-based, not vocabulary-based** — you learn grammar through 20 example sentences per topic, not by drilling rules in isolation.
@@ -86,8 +109,9 @@ cd german-study-kit
 make install        # one-time: .venv + dependencies
 make a1             # build one level
 make review        # build the A1 + A2 review decks
-make german5        # build the German 5 course deck
-make all            # build everything (A1 + A2 + B1 + B2 + verbs + themen + review + german5)
+make german5        # build the German 5 verb deck
+make german5-ws     # build the German 5 vocabulary decks
+make all            # build everything (A1 + A2 + B1 + B2 + verbs + themen + review + german5 + german5-ws)
 ```
 
 Audio is cached in `anki/audio/` (gitignored). Only changed sentences hit the TTS API on rebuild — the rest is instant.
